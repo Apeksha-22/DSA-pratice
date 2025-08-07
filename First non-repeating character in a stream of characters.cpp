@@ -4,8 +4,10 @@ string Solution::solve(string A) {
     queue<char>q;
     
     for(int i=0; i<A.size(); i++){
-        temp[A[i] - 'a'] +=1;
+        if(temp[A[i] - 'a'] == 0)
         q.push(A[i]);
+        temp[A[i] - 'a'] +=1;
+
         while(!q.empty() && temp[q.front() - 'a'] > 1){
             q.pop();
         }
