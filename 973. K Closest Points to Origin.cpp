@@ -63,3 +63,6 @@ public:
         return vector<vector<int>>(points.begin(),points.begin()+k);
     }
 };
+
+
+Question Link : https://leetcode.com/problems/k-closest-points-to-origin/description/
