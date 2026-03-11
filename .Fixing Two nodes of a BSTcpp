@@ -1,0 +1,60 @@
+/*
+class Node
+{
+    public:
+    int data;
+    Node *left, *right;
+    Node(int val)
+    {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution {
+  public:
+    void correctBST(Node* root) {
+        // add code here.
+        Node *last=NULL, *present=NULL, *curr=NULL, *first=NULL, *second=NULL;
+         curr=root;
+        while(curr){
+            if(!curr->left){
+                last = present;
+                present = curr;
+                if(last && last->data > present->data){
+                    if(!first)
+                    first = last;
+                    second = present;
+                }
+                curr=curr->right;
+            }else{
+                Node *temp = curr->left;
+                
+                while(temp->right != NULL && temp->right != curr){
+                    temp = temp->right;
+                }
+                if(temp->right == curr){
+                    temp->right = NULL;
+                    last = present;
+                    present = curr;
+                    if(last && last->data > present->data){
+                        if(!first)
+                        first = last;
+                        second = present;
+                    }
+                    curr = curr->right;
+                    
+                }else{
+                    temp->right = curr;
+                    curr= curr->left;   
+                }
+            }
+        }
+        
+        swap(first->data, second->data);
+    }
+};
+
+
+Question Link : https://www.geeksforgeeks.org/fixing-two-nodes-of-bst/
